@@ -1,0 +1,24 @@
+<configuration>
+    <!-- Define the Rolling File Appender -->
+    <appender name="DAILY_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- Path and pattern for the log files -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Log file naming pattern -->
+            <fileNamePattern>logs/app-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- Retain logs for 30 days -->
+            <maxHistory>30</maxHistory>
+            <!-- Optional: Total size cap for all logs -->
+            <totalSizeCap>100MB</totalSizeCap>
+        </rollingPolicy>
+
+        <!-- Log formatting -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Root Logger -->
+    <root level="INFO">
+        <appender-ref ref="DAILY_FILE" />
+    </root>
+</configuration>
